@@ -10,7 +10,7 @@
             background-color: #f5f5f5;
         }
         #videoContainer {
-            display: none; /* مخفي افتراضيًا */
+            display: none;
             margin: 30px auto;
             max-width: 700px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -18,7 +18,7 @@
             overflow: hidden;
         }
         button {
-            background: linear-gradient(145deg, #4CAF50, #2E7D32);
+            background: linear-gradient(145deg, #FF5722, #D32F2F);
             color: white;
             padding: 16px 40px;
             font-size: 20px;
@@ -26,50 +26,58 @@
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
         }
         button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.6);
         }
         button:active {
             transform: translateY(1px);
         }
-        video {
+        .video-responsive {
+            overflow: hidden;
+            padding-top: 56.25%; /* نسبة 16:9 */
+            position: relative;
+        }
+        .video-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            border: 0;
             border-radius: 8px;
         }
     </style>
 </head>
 <body>
-    <h1 style="color: #333;">🎬 اضغط على الزر لعرض الفيديو</h1>
-    <button onclick="showAndPlayVideo()">عرض الفيديو وتشغيله</button>
+    <h1 style="color: #333;">🎬 اضغط لعرض الفيديو</h1>
+    <button onclick="loadAndPlayVideo()">عرض الفيديو الآن</button>
     
-    <!-- الحاوية المخفية للفيديو -->
     <div id="videoContainer">
-    <iframe 
-        width="100%" 
-        height="400" 
-        src="https://youtube.com/watch?v=OVY-Ov6VCXA?autoplay=1" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-    </iframe>
-</div>
+        <div class="video-responsive">
+            <!-- سيتم تحميل الفيديو هنا عند الضغط -->
+            <iframe 
+                id="youtubeFrame" 
+                src="" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
 
     <script>
-        function showAndPlayVideo() {
+        function loadAndPlayVideo() {
             const container = document.getElementById('videoContainer');
-            const video = document.getElementById('myVideo');
+            const frame = document.getElementById('youtubeFrame');
             
-            // جعل الحاوية ظاهرة
+            // 1. عيّن رابط الفيديو مع تشغيل تلقائي
+            frame.src = "https://www.youtube.com/embed/OVY-Ov6VCXA?autoplay=1";
+            
+            // 2. اجعل الحاوية ظاهرة
             container.style.display = 'block';
-            
-            // تشغيل الفيديو فورًا (باستخدام تفاعل المستخدم)
-            video.play().catch(e => {
-                console.error("فشل التشغيل:", e);
-                alert("اضغط على زر التشغيل في الفيديو يدويًا.");
-            });
         }
     </script>
 </body>
