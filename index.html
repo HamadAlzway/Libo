@@ -1,48 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>عرض الفيديو</title>
+    <title>عرض الفيديو عند الضغط</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            margin-top: 50px;
+            margin-top: 100px;
+            background-color: #f5f5f5;
         }
         #videoContainer {
-            display: none;
-            margin-top: 20px;
+            display: none; /* مخفي افتراضيًا */
+            margin: 30px auto;
+            max-width: 700px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
         }
         button {
-            background-color: #4CAF50;
+            background: linear-gradient(145deg, #4CAF50, #2E7D32);
             color: white;
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 16px 40px;
+            font-size: 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
         }
         button:hover {
-            background-color: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+        }
+        button:active {
+            transform: translateY(1px);
+        }
+        video {
+            width: 100%;
+            border-radius: 8px;
         }
     </style>
 </head>
 <body>
-    <h1>اضغط على الزر لعرض الفيديو</h1>
-    <button onclick="showVideo()">عرض الفيديو</button>
+    <h1 style="color: #333;">🎬 اضغط على الزر لعرض الفيديو</h1>
+    <button onclick="showAndPlayVideo()">عرض الفيديو وتشغيله</button>
     
+    <!-- الحاوية المخفية للفيديو -->
     <div id="videoContainer">
-    <iframe width="640" height="360" src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-</div>
+        <video id="myVideo" controls>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+    </div>
 
     <script>
-        function showVideo() {
-            const videoContainer = document.getElementById('videoContainer');
+        function showAndPlayVideo() {
+            const container = document.getElementById('videoContainer');
             const video = document.getElementById('myVideo');
             
-            videoContainer.style.display = 'block';
-            video.play().catch(error => {
-                console.log("خطأ في التشغيل التلقائي:", error);
-                alert("يرجى الضغط على زر التشغيل في الفيديو.");
+            // جعل الحاوية ظاهرة
+            container.style.display = 'block';
+            
+            // تشغيل الفيديو فورًا (باستخدام تفاعل المستخدم)
+            video.play().catch(e => {
+                console.error("فشل التشغيل:", e);
+                alert("اضغط على زر التشغيل في الفيديو يدويًا.");
             });
         }
     </script>
