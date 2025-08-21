@@ -47,11 +47,15 @@
     
     <!-- الحاوية المخفية للفيديو -->
     <div id="videoContainer">
-        <video id="myVideo" controls>
-            <source src="https://youtu.be/OVY-Ov6VCXA?si=I4l9TRb4Ic2RuDy6" type="video/mp4">
-            متصفحك لا يدعم تشغيل الفيديو.
-        </video>
-    </div>
+    <iframe 
+        width="100%" 
+        height="400" 
+        src="https://youtu.be/OVY-Ov6VCXA?si=I4l9TRb4Ic2RuDy6/VIDEO_ID?autoplay=1" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+</div>
 
     <script>
         function showAndPlayVideo() {
