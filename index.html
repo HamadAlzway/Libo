@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>عرض الفيديو</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #videoContainer {
+            display: none;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>اضغط على الزر لعرض الفيديو</h1>
+    <button onclick="showVideo()">عرض الفيديو</button>
+    
+    <div id="videoContainer">
+        <video id="myVideo" width="640" height="360" muted controls autoplay>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            متصفحك لا يدعم عرض الفيديو.
+        </video>
+    </div>
+
+    <script>
+        function showVideo() {
+            const videoContainer = document.getElementById('videoContainer');
+            const video = document.getElementById('myVideo');
+            
+            videoContainer.style.display = 'block';
+            video.play().catch(error => {
+                console.log("خطأ في التشغيل التلقائي:", error);
+                alert("يرجى الضغط على زر التشغيل في الفيديو.");
+            });
+        }
+    </script>
+</body>
+</html>
